@@ -220,7 +220,7 @@ function M.run_filetype(mode)
   end
 end
 
--- Execute filetype or project
+-- Execute filetype
 function M.run_code(filetype, user_argument)
   if filetype ~= nil and filetype ~= "" then
     -- since we have reached here, means we have our command key
@@ -234,11 +234,16 @@ function M.run_code(filetype, user_argument)
     end
   end
   --  procede here if no input arguments
+  M.run_project()
+end
+
+-- Execute project
+function M.run_project(mode)
   local project = M.get_project_command()
   if project then
-    run_mode(project.command, project.name)
+    run_mode(project.command, project.name, mode)
   else
-    M.run_filetype()
+    M.run_filetype(mode)
   end
 end
 
